@@ -1,0 +1,45 @@
+{
+  "name": "frankenchat-client",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "punkah",
+  "license": "MIT",
+  "dependencies": {
+    "@types/socket.io-client": "^1.4.33",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "socket.io-client": "^2.3.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.4",
+    "@babel/plugin-transform-runtime": "^7.10.4",
+    "@babel/preset-env": "^7.10.4",
+    "@babel/preset-react": "^7.10.4",
+    "@babel/preset-typescript": "^7.10.4",
+    "@types/react-dom": "^16.9.8",
+    "@types/socket.io": "^2.1.8",
+    "babel-loader": "^8.1.0",
+    "css-loader": "^3.6.0",
+    "file-loader": "^6.0.0",
+    "fs": "^0.0.1-security",
+    "html-webpack-plugin": "^4.3.0",
+    "jest": "^26.1.0",
+    "node-sass": "^4.14.1",
+    "prettier": "^2.0.5",
+    "sass-loader": "^9.0.0",
+    "style-loader": "^1.2.1",
+    "ts-loader": "^7.0.5",
+    "tslint": "^6.1.2",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-react": "^5.0.0",
+    "typescript": "^3.9.6",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "scripts": {
+    "start": "webpack-dev-server --open --mode development --watch",
+    "build": "yarn install && webpack --mode production",
+    "test": "jest"
+  }
+}

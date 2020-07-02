@@ -1,0 +1,8 @@
+{
+  "extends": ["tslint:latest", "tslint-react", "tslint-config-prettier"],
+  "plugins": [{ "name": "typescript-tslint-plugin" }],
+  "rules": {
+    "no-submodule-imports": false,
+    "object-literal-sort-keys": false
+  }
+}
