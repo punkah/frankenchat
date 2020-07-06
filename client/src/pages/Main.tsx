@@ -25,6 +25,7 @@ const Main = () => {
       <ThemeProvider>
         <SettingsProvider>
           <Header
+            messages={messages}
             selectedTab={selectedTab}
             onTabChange={setSelectedTab}
           />
