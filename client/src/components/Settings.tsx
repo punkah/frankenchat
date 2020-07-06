@@ -9,8 +9,8 @@ const Settings = () => {
   const { theme, setTheme, resetTheme } = useContext(ThemeContext);
   const { getSetting, setSetting, resetSettings } = useContext(SettingsContext);
 
-  const handleThemeChange = (event: { target: { value: string } }) => {
-    setTheme(event?.target.value);
+  const handleThemeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setTheme(event.target.value as Theme);
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {

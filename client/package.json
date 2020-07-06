@@ -5,6 +5,7 @@
   "author": "punkah",
   "license": "MIT",
   "dependencies": {
+    "classnames": "^2.2.6",
     "moment": "^2.27.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -16,6 +17,7 @@
     "@babel/preset-env": "^7.10.4",
     "@babel/preset-react": "^7.10.4",
     "@babel/preset-typescript": "^7.10.4",
+    "@types/classnames": "^2.2.10",
     "@types/react-dom": "^16.9.8",
     "@types/socket.io-client": "^1.4.33",
     "babel-loader": "^8.1.0",

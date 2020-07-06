@@ -2,10 +2,11 @@ import React, { useContext, useState } from 'react';
 import SettingsContext from '../../context/SettingsContext';
 import socket from '../../socket';
 import { Setting } from '../../types/constants';
+import { SendMessageOnCtrlEnter } from '../../types/enums';
 import './input.scss';
 
-const Input = ({ initialMessage = '' }) => {
-  const [message, setMessage] = useState(initialMessage);
+const Input = () => {
+  const [message, setMessage] = useState('');
   const { getSetting } = useContext(SettingsContext);
 
   const handleSend = () => {
@@ -19,12 +20,14 @@ const Input = ({ initialMessage = '' }) => {
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (
-      (getSetting(Setting.SendMessageOnCtrlEnter) &&
-        event.key === 'Enter' &&
-        event.ctrlKey === true) ||
-      (!getSetting(Setting.SendMessageOnCtrlEnter) &&
-        event.key === 'Enter' &&
-        event.ctrlKey === false)
+      (event.key === 'Enter' &&
+        event.ctrlKey === true &&
+        getSetting(Setting.SendMessageOnCtrlEnter) ===
+          SendMessageOnCtrlEnter.On) ||
+      (event.key === 'Enter' &&
+        event.ctrlKey === false &&
+        getSetting(Setting.SendMessageOnCtrlEnter) ===
+          SendMessageOnCtrlEnter.Off)
     ) {
       event.preventDefault();
       handleSend();

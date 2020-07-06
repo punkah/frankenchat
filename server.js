@@ -4,6 +4,8 @@ const http = require("http").Server(app);
 const io = require("socket.io")(http);
 const port = process.env.PORT || 5000;
 
+const RETAIN_MESSAGE_COUNT = 100;
+
 const messages = [];
 
 io.on("connection", (socket) => {
@@ -16,6 +18,9 @@ io.on("connection", (socket) => {
     };
     io.emit("chat-message", newMessage);
     messages.push(newMessage);
+    if (messages.length > RETAIN_MESSAGE_COUNT) {
+      messages.shift();
+    }
   });
 });
 

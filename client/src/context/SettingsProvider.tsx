@@ -25,19 +25,18 @@ const SettingsProvider = ({ children }: { children: any }) => {
       ...settings,
       [name]: value,
     }));
-    localStorage.setItem(name.toString(), value);
+    localStorage.setItem(name, value);
   };
 
   const resetSettings = () => {
     const newSettings = {
-      [Setting.Username.toString()]: get_DEFAULT_USERNAME(),
-      [Setting.ClockDisplay.toString()]: DEFAULT_CLOCK_DISPLAY,
-      [Setting.SendMessageOnCtrlEnter.toString()]: DEFAULT_SEND_MESSAGES_ON_CTRL_ENTER,
+      [Setting.Username]: get_DEFAULT_USERNAME(),
+      [Setting.ClockDisplay]: DEFAULT_CLOCK_DISPLAY,
+      [Setting.SendMessageOnCtrlEnter]: DEFAULT_SEND_MESSAGES_ON_CTRL_ENTER,
     };
-    setSettings(newSettings);
-    Object.keys(newSettings).forEach((setting) => {
-      localStorage.setItem(setting, newSettings[setting]);
-    });
+    Object.entries(newSettings).forEach(([key, value]) =>
+      handleSettingChange(key, value)
+    );
   };
 
   const getSetting = (setting: string) => {

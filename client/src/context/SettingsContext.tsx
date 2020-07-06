@@ -1,10 +1,5 @@
 import React from 'react';
-
-type SettingContextProps = {
-  getSetting: (setting: string) => string;
-  setSetting: (setting: string, value: any) => void;
-  resetSettings: () => void;
-};
+import { SettingContextProps } from '../types/types';
 
 const SettingsContext = React.createContext<SettingContextProps>({
   getSetting: (setting: string) => '',

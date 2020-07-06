@@ -13,12 +13,6 @@ export enum ClockDisplay {
   TwentyFour = '24',
 }
 
-export enum Language {
-  EN,
-  DE,
-  HU,
-}
-
 export enum SendMessageOnCtrlEnter {
   On = 'On',
   Off = 'Off',

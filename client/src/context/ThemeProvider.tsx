@@ -14,7 +14,12 @@ const ThemeProvider = ({ children }: { children: any }) => {
 
   const applyTheme = (classname: string) => {
     const root = document.getElementsByTagName('html')[0];
-    root.setAttribute('class', classname);
+    root.classList.forEach((className) => {
+      if (className.startsWith('theme-')) {
+        root.classList.remove(className);
+      }
+    });
+    root.classList.add(classname);
   };
 
   const setNewTheme = (theme: Theme) => {

@@ -1,3 +1,4 @@
+import classnames from 'classnames';
 import React, { useEffect, useState } from 'react';
 import { Tab } from '../types/enums';
 import { Message } from '../types/interfaces';
@@ -34,15 +35,18 @@ const Header = ({
     <div className={'header'}>
       <div
         onClick={handleTabSelect(Tab.Chat)}
-        className={
-          selectedTab === Tab.Chat ? 'selected' : blinking ? ' blinking' : ''
-        }
+        className={classnames({
+          selected: selectedTab === Tab.Chat,
+          blinking,
+        })}
       >
         Chat {unreadCount ? `(${unreadCount})` : ''}
       </div>
       <div
         onClick={handleTabSelect(Tab.Settings)}
-        className={selectedTab === Tab.Settings ? 'selected' : ''}
+        className={classnames({
+          selected: selectedTab === Tab.Settings,
+        })}
       >
         Settings
       </div>
