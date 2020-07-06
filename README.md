@@ -1,3 +1,19 @@
-## frankenchat
+# frankenchat
 
--
+## 1. Running the app
+
+Start by runnning `yarn` and then `yarn dev` from the root directory.
+
+## 2. Features
+
+- [x] Chat page - send & receive messages
+
+- [x] Settings
+
+  - [x] User name - default is socket.id
+  - [x] Interface color - default is system theme
+  - [x] Clock display - default 12h
+  - [x] Send messages on CTRL+ENTER: default is off. When it's turned on the user can type multiline messages.
+
+- [x] React Context is used for state management (Theme and Settings).
+- [x] If user is not in the Chat tab, Chat tab starts blinking with unread count until user clicks on it.

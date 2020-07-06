@@ -1,5 +1,6 @@
 const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
+const WebpackPwaManifest = require('webpack-pwa-manifest');
 
 module.exports = {
   mode: 'development',
@@ -21,7 +22,7 @@ module.exports = {
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
-        test: /\.(png|svg|jpg|gif)$/,
+        test: /\.(png|svg|jpg|gif|ico)$/,
         use: ['file-loader'],
       },
     ],
@@ -33,6 +34,18 @@ module.exports = {
     new HTMLWebpackPlugin({
       template: './src/index.html',
       filename: 'index.html',
+      favicon: './src/assets/franken.png',
+    }),
+    new WebpackPwaManifest({
+      name: 'FrankenChat',
+      description: 'This is FrankenChat',
+      background_color: '#ffffff',
+      icons: [
+        {
+          src: path.resolve('src/assets/franken.png'),
+          sizes: [96, 128, 192, 256, 384, 512],
+        },
+      ],
     }),
   ],
 };
