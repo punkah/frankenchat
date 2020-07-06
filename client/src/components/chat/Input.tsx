@@ -1,34 +1,28 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import SettingsContext from '../../context/SettingsContext';
 import socket from '../../socket';
-import {
-  DEFAULT_SEND_MESSAGES_ON_CTRL_ENTER,
-  Setting,
-} from '../../types/constants';
-import { SendMessageOnCtrlEnter } from '../../types/enums';
+import { Setting } from '../../types/constants';
 import './input.scss';
 
 const Input = ({ initialMessage = '' }) => {
   const [message, setMessage] = useState(initialMessage);
-
-  const sendOnCtrlEnterTurnedOn =
-    (localStorage.getItem(Setting.SendMessageOnCtrlEnter) ||
-      DEFAULT_SEND_MESSAGES_ON_CTRL_ENTER) === SendMessageOnCtrlEnter.On;
+  const { getSetting } = useContext(SettingsContext);
 
   const handleSend = () => {
     if (!message) {
       return;
     }
-    const username = localStorage.getItem(Setting.Username);
-    socket.emit('chat-message', { username: username || socket.id, message });
+    const username = getSetting(Setting.Username);
+    socket.emit('chat-message', { username, message });
     setMessage('');
   };
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (
-      (sendOnCtrlEnterTurnedOn &&
+      (getSetting(Setting.SendMessageOnCtrlEnter) &&
         event.key === 'Enter' &&
         event.ctrlKey === true) ||
-      (!sendOnCtrlEnterTurnedOn &&
+      (!getSetting(Setting.SendMessageOnCtrlEnter) &&
         event.key === 'Enter' &&
         event.ctrlKey === false)
     ) {

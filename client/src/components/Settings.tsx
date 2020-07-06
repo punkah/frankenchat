@@ -1,49 +1,25 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
+import SettingsContext from '../context/SettingsContext';
 import ThemeContext from '../context/ThemeContext';
-import {
-  DEFAULT_CLOCK_DISPLAY,
-  DEFAULT_SEND_MESSAGES_ON_CTRL_ENTER,
-  get_DEFAULT_USERNAME,
-  Setting,
-} from '../types/constants';
+import { Setting } from '../types/constants';
 import { ClockDisplay, SendMessageOnCtrlEnter, Theme } from '../types/enums';
 import './settings.scss';
 
 const Settings = () => {
   const { theme, setTheme, resetTheme } = useContext(ThemeContext);
-  const [settings, setSettings] = useState({
-    [Setting.Username]:
-      localStorage.getItem(Setting.Username) || get_DEFAULT_USERNAME(),
-    [Setting.ClockDisplay]:
-      localStorage.getItem(Setting.ClockDisplay) || DEFAULT_CLOCK_DISPLAY,
-    [Setting.SendMessageOnCtrlEnter]:
-      localStorage.getItem(Setting.SendMessageOnCtrlEnter) ||
-      DEFAULT_SEND_MESSAGES_ON_CTRL_ENTER,
-  });
-
-  const handleChange = (event: { target: { name: string; value: string } }) => {
-    const { name, value } = event.target;
-    setSettings((settings) => ({
-      ...settings,
-      [name]: value,
-    }));
-    localStorage.setItem(name, value);
-  };
+  const { getSetting, setSetting, resetSettings } = useContext(SettingsContext);
 
   const handleThemeChange = (event: { target: { value: string } }) => {
     setTheme(event?.target.value);
   };
 
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    setSetting(name, value);
+  };
+
   const reset = () => {
-    const newSettings = {
-      [Setting.Username]: get_DEFAULT_USERNAME(),
-      [Setting.ClockDisplay]: DEFAULT_CLOCK_DISPLAY,
-      [Setting.SendMessageOnCtrlEnter]: DEFAULT_SEND_MESSAGES_ON_CTRL_ENTER,
-    };
-    setSettings(newSettings);
-    Object.keys(newSettings).forEach((setting) => {
-      localStorage.setItem(setting, newSettings[setting]);
-    });
+    resetSettings();
     resetTheme();
   };
 
@@ -55,7 +31,7 @@ const Settings = () => {
           <input
             type="text"
             id={Setting.Username}
-            value={settings[Setting.Username]}
+            value={getSetting(Setting.Username)}
             name={Setting.Username}
             onChange={handleChange}
           />
@@ -92,7 +68,7 @@ const Settings = () => {
               name={Setting.ClockDisplay}
               value={ClockDisplay.Twelve}
               onChange={handleChange}
-              checked={settings[Setting.ClockDisplay] == ClockDisplay.Twelve}
+              checked={getSetting(Setting.ClockDisplay) == ClockDisplay.Twelve}
             />
             <label htmlFor={ClockDisplay.Twelve}>{'12 hours'}</label>
             <input
@@ -102,7 +78,7 @@ const Settings = () => {
               value={ClockDisplay.TwentyFour}
               onChange={handleChange}
               checked={
-                settings[Setting.ClockDisplay] == ClockDisplay.TwentyFour
+                getSetting(Setting.ClockDisplay) == ClockDisplay.TwentyFour
               }
             />
             <label htmlFor={ClockDisplay.TwentyFour}>{'24 hours'}</label>
@@ -118,7 +94,7 @@ const Settings = () => {
               value={SendMessageOnCtrlEnter.On}
               onChange={handleChange}
               checked={
-                settings[Setting.SendMessageOnCtrlEnter] ==
+                getSetting(Setting.SendMessageOnCtrlEnter) ==
                 SendMessageOnCtrlEnter.On
               }
             />
@@ -130,7 +106,7 @@ const Settings = () => {
               value={SendMessageOnCtrlEnter.Off}
               onChange={handleChange}
               checked={
-                settings[Setting.SendMessageOnCtrlEnter] ==
+                getSetting(Setting.SendMessageOnCtrlEnter) ==
                 SendMessageOnCtrlEnter.Off
               }
             />

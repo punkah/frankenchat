@@ -1,5 +1,5 @@
 import React from 'react';
-import { Message } from '../types';
+import { Message } from '../types/interfaces';
 import Input from './chat/Input';
 import Messages from './chat/Messages';
 

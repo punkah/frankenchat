@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Chat from '../components/Chat';
 import Header from '../components/Header';
 import Settings from '../components/Settings';
+import SettingsProvider from '../context/SettingsProvider';
 import ThemeProvider from '../context/ThemeProvider';
 import socket from '../socket';
 import { Tab } from '../types/enums';
@@ -22,9 +23,14 @@ const Main = () => {
   return (
     <div className={'main'}>
       <ThemeProvider>
-        <Header selectedTab={selectedTab} onTabChange={setSelectedTab} />
-        {selectedTab === Tab.Chat && <Chat messages={messages} />}
-        {selectedTab === Tab.Settings && <Settings />}
+        <SettingsProvider>
+          <Header
+            selectedTab={selectedTab}
+            onTabChange={setSelectedTab}
+          />
+          {selectedTab === Tab.Chat && <Chat messages={messages} />}
+          {selectedTab === Tab.Settings && <Settings />}
+        </SettingsProvider>
       </ThemeProvider>
     </div>
   );

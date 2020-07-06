@@ -1,27 +1,22 @@
 import moment from 'moment';
-import React, { useEffect, useRef } from 'react';
-import {
-  DEFAULT_CLOCK_DISPLAY,
-  get_DEFAULT_USERNAME,
-  Setting,
-} from '../../types/constants';
+import React, { useContext, useEffect, useRef } from 'react';
+import SettingsContext from '../../context/SettingsContext';
+import { Setting } from '../../types/constants';
 import { ClockDisplay } from '../../types/enums';
 import { Message } from '../../types/interfaces';
 import './messages.scss';
 
 const Messages = ({ messages }: { messages: Message[] }) => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const clockDisplay =
-    localStorage.getItem(Setting.ClockDisplay) || DEFAULT_CLOCK_DISPLAY;
-  const currentUsername =
-    localStorage.getItem(Setting.Username) || get_DEFAULT_USERNAME();
+  const { getSetting } = useContext(SettingsContext);
 
   const getDate = (timestamp: number) =>
-    clockDisplay === ClockDisplay.Twelve
+    getSetting(Setting.ClockDisplay) === ClockDisplay.Twelve
       ? moment(timestamp).format('hh:mm A')
       : moment(timestamp).format('HH:mm');
 
-  const isCurrentUser = (username: string) => username === currentUsername;
+  const isCurrentUser = (username: string) =>
+    username === getSetting(Setting.Username);
 
   useEffect(() => {
     messagesEndRef?.current?.scrollIntoView({ behavior: 'auto' });
