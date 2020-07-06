@@ -1,16 +1,10 @@
-@mixin desktop-up {
+@mixin desktop {
   @media (min-width: 1024px) {
     @content;
   }
 }
-@mixin desktop-down {
+@mixin mobile {
   @media (max-width: 1023px) {
     @content;
-  }
-}
-
-.show-desktop.hide {
-  @include desktop-down {
-    display: none;
   }
 }

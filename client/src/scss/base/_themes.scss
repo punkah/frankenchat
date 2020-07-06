@@ -1,0 +1,12 @@
+html {
+  &.theme {
+    &-light {
+      --color-primary: black;
+      --color-secondary: white;
+    }
+    &-dark {
+      --color-primary: white;
+      --color-secondary: black;
+    }
+  }
+}

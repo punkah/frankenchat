@@ -1,0 +1,17 @@
+.header {
+  display: flex;
+  border: 1px solid var(--color-primary);
+  margin: 0.5rem;
+  padding: 0 0.5rem;
+  text-underline-position: auto;
+
+  > div {
+    margin: 0.3rem;
+    cursor: pointer;
+  }
+
+  .selected {
+    text-decoration: underline;
+    text-underline-position: under;
+  }
+}

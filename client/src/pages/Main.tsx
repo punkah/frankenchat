@@ -1,36 +1,32 @@
-import React, { useState, useEffect } from 'react';
-import io from 'socket.io-client';
-
-const SOCKET_ENDPOINT = 'http://localhost:5000';
-const socket = io(SOCKET_ENDPOINT);
+import React, { useEffect, useState } from 'react';
+import Chat from '../components/Chat';
+import Header from '../components/Header';
+import Settings from '../components/Settings';
+import ThemeProvider from '../context/ThemeProvider';
+import socket from '../socket';
+import { Tab } from '../types/enums';
+import { Message } from '../types/interfaces';
+import './main.scss';
 
 const Main = () => {
-  const [messages, setMessages] = useState<string[]>([]);
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [selectedTab, setSelectedTab] = useState(Tab.Chat);
 
   useEffect(() => {
-    socket.on(
-      'chat-message',
-      ({ user, msg }: { user: string; msg: string }) => {
-        console.log('message received', user, msg);
-        setMessages((m) => m.concat([`${user}: ${msg}`]));
-      }
-    );
-
-    socket.on('connect', () => {
-      console.log('socket id', socket.id);
-      socket.emit('chat-message', 'hellohallo');
+    socket.on('chat-message', (message: Message) => {
+      setMessages((messages) => [...messages, message]);
     });
+    socket.on('reconnect', (messages: Message[]) => setMessages(messages));
   }, []);
 
   return (
-    <>
-      Messages:
-      <div>
-        {messages.map((msg) => (
-          <div>{msg}</div>
-        ))}
-      </div>
-    </>
+    <div className={'main'}>
+      <ThemeProvider>
+        <Header selectedTab={selectedTab} onTabChange={setSelectedTab} />
+        {selectedTab === Tab.Chat && <Chat messages={messages} />}
+        {selectedTab === Tab.Settings && <Settings />}
+      </ThemeProvider>
+    </div>
   );
 };
 

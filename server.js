@@ -4,11 +4,18 @@ const http = require("http").Server(app);
 const io = require("socket.io")(http);
 const port = process.env.PORT || 5000;
 
+const messages = [];
+
 io.on("connection", (socket) => {
-  console.log("connected");
-  socket.on("chat-message", (msg) => {
-    console.log(`message received from ${socket.id}`, msg);
-    io.emit("chat-message", { user: socket.id, msg });
+  io.emit("reconnect", messages);
+  socket.on("chat-message", ({ message, username }) => {
+    const newMessage = {
+      username,
+      message,
+      timestamp: Date.now(),
+    };
+    io.emit("chat-message", newMessage);
+    messages.push(newMessage);
   });
 });
 

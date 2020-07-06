@@ -1,0 +1,66 @@
+.messages {
+  flex: 1;
+  overflow: scroll;
+  border: 1px solid var(--color-primary);
+  margin: 0 0.5rem 0.5rem;
+  padding: 0 0.5rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+
+  .message {
+    margin-bottom: 0.5rem;
+
+    &.right {
+      align-self: flex-end;
+
+      .timestamp {
+        text-align: right;
+        padding-right: 1.5rem;
+      }
+
+      .bubble {
+        &::before {
+          right: 1rem;
+          border-left: 1px solid var(--color-primary);
+          border-top: 1px solid var(--color-primary);
+          transform: rotate(90deg) skew(45deg);
+        }
+      }
+    }
+
+    &.left {
+      align-self: flex-start;
+
+      .timestamp {
+        padding-left: 1.5rem;
+        text-align: left;
+      }
+
+      .bubble {
+        &::before {
+          left: 1rem;
+          border-right: 1px solid var(--color-primary);
+          border-top: 1px solid var(--color-primary);
+          transform: rotate(-90deg) skew(-45deg);
+        }
+      }
+    }
+  }
+
+  .bubble {
+    border-radius: 15px;
+    border: 1px solid var(--color-primary);
+    padding: 0rem 1.5rem;
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      width: 6px;
+      top: -4px;
+      height: 6px;
+      background-color: var(--color-secondary);
+      border-bottom-color: var(--color-secondary);
+    }
+  }
+}

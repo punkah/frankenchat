@@ -12,10 +12,14 @@ html {
 
 body {
   box-sizing: border-box;
-  background-color: $color-secondary;
+  background-color: var(--color-secondary);
+}
+
+#root {
+  height: 100vh;
 }
 
 ::selection {
-  color: $color-secondary;
-  background-color: $color-primary;
+  color: var(--color-secondary);
+  background-color: var(--color-primary);
 }

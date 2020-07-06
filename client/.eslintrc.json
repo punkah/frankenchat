@@ -1,0 +1,43 @@
+{
+  "extends": ["airbnb", "eslint:recommended", "prettier/react"],
+  "plugins": ["prettier"],
+  "parser": "babel-eslint",
+  "env": {
+    "es6": true,
+    "browser": true,
+    "modules": false
+  },
+  "rules": {
+    "prettier/prettier": "error",
+    "quotes": [
+      2,
+      "single",
+      { "avoidEscape": true, "allowTemplateLiterals": true }
+    ],
+    "react-hooks/exhaustive-deps": "off",
+    "react/jsx-filename-extension": "off",
+    "react/prop-types": "off",
+    "react/jsx-boolean-value": "off",
+    "react/jsx-curly-brace-presence": "always",
+    "no-unused-vars": "warn",
+    "import/prefer-default-export": "warn",
+    "no-case-declarations": "off",
+    "react/destructuring-assignment": "warn",
+    "react/no-did-update-set-state": "warn",
+    "react/jsx-props-no-spreading": "warn",
+    "jsx-a11y/no-static-element-interactions": "warn",
+    "jsx-a11y/click-events-have-key-events": "warn",
+    "react/no-array-index-key": "warn",
+    "jsx-a11y/control-has-associated-label": "warn",
+    "jsx-a11y/mouse-events-have-key-events": "warn",
+    "jsx-a11y/label-has-associated-control": [
+      2,
+      {
+        "assert": "either"
+      }
+    ],
+    "import/no-cycle": "warn",
+    "no-extra-boolean-cast": "off",
+    "react/self-closing-comp": "warn"
+  }
+}

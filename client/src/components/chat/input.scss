@@ -1,0 +1,13 @@
+.input {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0.5rem 0.5rem;
+
+  textarea {
+    width: 100%;
+  }
+
+  button {
+    padding: 0.5rem 1rem;
+  }
+}
