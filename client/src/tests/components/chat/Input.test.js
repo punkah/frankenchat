@@ -1,8 +1,11 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import Input from '../components/chat/Input';
-import socket from '../socket';
-import { SendMessageOnCtrlEnter } from '../types/enums';
+import Input from '../../../components/chat/Input';
+import { SendMessageOnCtrlEnter } from '../../../types/enums';
+
+jest.mock('socket.io-client', () => () => ({
+  emit: jest.fn(),
+}));
 
 describe('Input', () => {
   it('input change sets message value', () => {
@@ -36,6 +39,6 @@ describe('Input', () => {
       preventDefault: jest.fn(),
     });
 
-    expect(socket.emit).toHaveBeenCalled();
+    expect(setMessage).toHaveBeenCalledWith('');
   });
 });

@@ -10,7 +10,7 @@ export const Setting = {
   Language: `${APP_PREFIX}.language`,
 };
 
-export const get_DEFAULT_USERNAME = () => socket.id;
+export const get_DEFAULT_USERNAME = () => socket?.id;
 export const DEFAULT_THEME = window.matchMedia('(prefers-color-scheme: dark)')
   .matches
   ? Theme.Dark

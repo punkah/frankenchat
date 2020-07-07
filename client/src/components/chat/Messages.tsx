@@ -19,7 +19,7 @@ const Messages = ({ messages }: { messages: Message[] }) => {
     username === getSetting(Setting.Username);
 
   useEffect(() => {
-    messagesEndRef?.current?.scrollIntoView({ behavior: 'auto' });
+    messagesEndRef?.current?.scrollIntoView?.({ behavior: 'auto' });
   }, [messages]);
 
   const renderMessage = ({ timestamp, username, message }: Message) => {

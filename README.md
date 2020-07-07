@@ -4,6 +4,8 @@
 
 Start by runnning `yarn` and then `yarn dev` from the root directory.
 
+This will automatically open a browser window at http://localhost:8080. If you open the same url in another window, you can start chatting to yourself.
+
 ## 2. Features
 
 - [x] Chat page - send & receive messages
@@ -19,3 +21,5 @@ Start by runnning `yarn` and then `yarn dev` from the root directory.
 - [x] If user is not in the Chat tab, Chat tab starts blinking with unread count until user clicks on it.
 - [x] The view is scrolled to the end of the messages when switching to the Chat tab or when the view is scrolled back up by the user previously and a new message is received.
 - [x] Stored messages are loaded from the server upon reconnecting
+- [x] Multi-browser support achieved by using postcss webpack plugin
+- [x] Test coverage: ~86% of lines

@@ -9,7 +9,7 @@ const RETAIN_MESSAGE_COUNT = 100;
 const messages = [];
 
 io.on("connection", (socket) => {
-  io.emit("reconnect", messages);
+  socket.emit("reconnect", messages);
   socket.on("chat-message", ({ message, username }) => {
     const newMessage = {
       username,

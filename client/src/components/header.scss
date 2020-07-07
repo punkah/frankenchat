@@ -17,18 +17,11 @@
 
     &.blinking {
       animation: blink-animation 1s infinite;
-      -webkit-animation: blink-animation 1s infinite;
     }
   }
 }
 
 @keyframes blink-animation {
-  to {
-    background-color: var(--color-primary);
-    color: var(--color-secondary);
-  }
-}
-@-webkit-keyframes blink-animation {
   to {
     background-color: var(--color-primary);
     color: var(--color-secondary);
